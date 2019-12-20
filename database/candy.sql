@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2019 a las 13:33:53
+-- Tiempo de generación: 20-12-2019 a las 16:05:46
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -46,7 +46,7 @@ CREATE TABLE `candys` (
 --
 
 INSERT INTO `candys` (`id`, `created_at`, `updated_at`, `title`, `price`, `stock`, `release_date`, `size`, `categorie_id`, `proavatar`) VALUES
-(1, NULL, '2019-12-20 05:12:19', 'PSYCHEDELIC CANDY RASH X 200', 197.9, 23, '2010-10-04 00:00:00', 1000, 9, NULL),
+(1, NULL, '2019-12-20 17:57:59', 'PSYCHEDELIC CANDY RASH X 200', 198.9, 23, '2010-10-04 00:00:00', 1000, 9, NULL),
 (2, NULL, NULL, 'Chococ Rash', 20, 11, '1997-09-04 00:00:00', 200, 3, NULL),
 (3, NULL, NULL, 'Pepas Rash', 9.1, 30, '2004-07-04 00:00:00', 15, 4, NULL),
 (4, NULL, '2019-12-20 07:21:40', 'Lolly Candy Flash', 9, 60, '2003-11-04 00:00:00', 180, 5, '1'),
@@ -71,8 +71,9 @@ INSERT INTO `candys` (`id`, `created_at`, `updated_at`, `title`, `price`, `stock
 (24, '2019-12-20 05:41:24', '2019-12-20 05:41:24', 'Chup.mister pop', 45, 100, NULL, NULL, NULL, NULL),
 (25, '2019-12-20 08:22:27', '2019-12-20 08:22:27', 'Chup.mister pop', 40, 100, NULL, NULL, NULL, NULL),
 (26, '2019-12-20 08:23:28', '2019-12-20 08:23:28', 'Chup.mister pop', 198.9, 100, NULL, NULL, NULL, NULL),
-(27, '2019-12-20 08:28:21', '2019-12-20 08:28:21', 'Chup.mister pop', 59, 100, NULL, NULL, NULL, 'C:\\xampp\\tmp\\php3FC8.tmp'),
-(28, '2019-12-20 08:36:15', '2019-12-20 08:36:15', 'Car.misky', 50, 200, NULL, NULL, NULL, 'kW5SjVbIQNPVZTcqdgB6cjiTMfMRwnE4DdcZzvZJ.jpeg');
+(28, '2019-12-20 08:36:15', '2019-12-20 08:36:15', 'Car.misky', 50, 200, NULL, NULL, NULL, 'kW5SjVbIQNPVZTcqdgB6cjiTMfMRwnE4DdcZzvZJ.jpeg'),
+(29, '2019-12-20 17:46:23', '2019-12-20 17:46:23', 'Chocolate', 70, 5, NULL, NULL, NULL, 'solkgjvKCBemS8LdPM7uFi9Qc0sdUfNGzZNBM6KU.jpeg'),
+(30, '2019-12-20 18:00:31', '2019-12-20 18:00:31', 'Chup.mister pop', 59, 200, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,6 +144,7 @@ CREATE TABLE `mi_carrito` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `candy_id` bigint(20) NOT NULL,
+  `producto` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `cantidad` int(10) UNSIGNED DEFAULT NULL,
@@ -155,21 +157,26 @@ CREATE TABLE `mi_carrito` (
 -- Volcado de datos para la tabla `mi_carrito`
 --
 
-INSERT INTO `mi_carrito` (`id`, `user_id`, `candy_id`, `created_at`, `updated_at`, `cantidad`, `subtotal`, `eliminado`, `comprado`) VALUES
-(1, 8, 23, '2019-12-19 19:22:27', '2019-12-19 19:22:27', NULL, 40, NULL, NULL),
-(2, 8, 5, '2019-12-19 19:23:44', '2019-12-19 19:23:44', NULL, 8, NULL, NULL),
-(3, 8, 1, '2019-12-19 19:23:47', '2019-12-19 19:23:47', NULL, 200, NULL, NULL),
-(4, 7, 1, '2019-12-19 19:24:50', '2019-12-20 08:11:23', 12, 200, 1, 1),
-(5, 8, 2, '2019-12-19 22:24:42', '2019-12-19 22:24:42', 1, 20, NULL, NULL),
-(6, 8, 1, '2019-12-19 22:24:45', '2019-12-19 22:24:45', 1, 200, NULL, NULL),
-(7, 7, 1, '2019-12-20 02:50:57', '2019-12-20 08:11:23', 1, 200, 1, 1),
-(8, 7, 1, NULL, '2019-12-20 08:11:23', 15, 50, 1, 1),
-(9, 7, 1, '2019-12-20 07:28:05', '2019-12-20 08:11:23', 1, 198, 1, 1),
-(10, 7, 1, '2019-12-20 07:28:10', '2019-12-20 08:11:23', 15, 198, NULL, 1),
-(11, 7, 1, '2019-12-20 08:12:36', '2019-12-20 08:13:09', 12, 198, 1, 1),
-(12, 7, 2, '2019-12-20 08:12:39', '2019-12-20 08:13:09', 1, 20, NULL, 1),
-(13, 7, 3, '2019-12-20 08:12:43', '2019-12-20 08:13:09', 1, 9, NULL, 1),
-(14, 7, 4, '2019-12-20 08:12:47', '2019-12-20 08:13:09', 1, 9, NULL, 1);
+INSERT INTO `mi_carrito` (`id`, `user_id`, `candy_id`, `producto`, `created_at`, `updated_at`, `cantidad`, `subtotal`, `eliminado`, `comprado`) VALUES
+(1, 8, 23, '', '2019-12-19 19:22:27', '2019-12-20 15:47:43', NULL, 40, 1, 1),
+(2, 8, 5, '', '2019-12-19 19:23:44', '2019-12-20 15:47:43', NULL, 8, 1, 1),
+(3, 8, 1, '', '2019-12-19 19:23:47', '2019-12-20 15:47:43', NULL, 200, 1, 1),
+(4, 7, 1, '', '2019-12-19 19:24:50', '2019-12-20 08:11:23', 12, 200, 1, 1),
+(5, 8, 2, '', '2019-12-19 22:24:42', '2019-12-20 15:47:43', 1, 20, NULL, 1),
+(6, 8, 1, '', '2019-12-19 22:24:45', '2019-12-20 15:47:43', 1, 200, NULL, 1),
+(7, 7, 1, '', '2019-12-20 02:50:57', '2019-12-20 08:11:23', 1, 200, 1, 1),
+(8, 7, 1, '', NULL, '2019-12-20 08:11:23', 15, 50, 1, 1),
+(9, 7, 1, '', '2019-12-20 07:28:05', '2019-12-20 08:11:23', 1, 198, 1, 1),
+(10, 7, 1, '', '2019-12-20 07:28:10', '2019-12-20 08:11:23', 15, 198, NULL, 1),
+(11, 7, 1, '', '2019-12-20 08:12:36', '2019-12-20 08:13:09', 12, 198, 1, 1),
+(12, 7, 2, '', '2019-12-20 08:12:39', '2019-12-20 08:13:09', 1, 20, NULL, 1),
+(13, 7, 3, '', '2019-12-20 08:12:43', '2019-12-20 08:13:09', 1, 9, NULL, 1),
+(14, 7, 4, '', '2019-12-20 08:12:47', '2019-12-20 08:13:09', 1, 9, NULL, 1),
+(15, 8, 1, 'PSYCHEDELIC CANDY RASH X 200', '2019-12-20 16:38:26', '2019-12-20 16:38:26', 1, 198, NULL, NULL),
+(16, 8, 2, 'Chococ Rash', '2019-12-20 16:38:35', '2019-12-20 16:38:35', 1, 20, NULL, NULL),
+(17, 9, 1, 'PSYCHEDELIC CANDY RASH X 200', '2019-12-20 17:55:45', '2019-12-20 17:56:04', 1, 198, 1, 1),
+(18, 9, 2, 'Chococ Rash', '2019-12-20 17:55:49', '2019-12-20 17:56:04', 1, 20, NULL, 1),
+(19, 9, 4, 'Lolly Candy Flash', '2019-12-20 17:55:52', '2019-12-20 17:56:04', 1, 9, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -291,7 +298,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `av
 (5, 'Ezequiel', 'prueba@prueba.li', NULL, '$2y$10$XWChvlczTkfn7PfuZfLEUe2TqgBJgcoWg6D5n1bL5o9QJEL5sBlI.', 'uzCnVaKhF6oXeWVjrbGhKs9cmyaPad1M8uQNqllt.png', NULL, '2019-12-18 23:38:49', '2019-12-18 23:38:49', 0),
 (6, 'Nico', 'nico@nico.com.ar', NULL, '$2y$10$o/WtKIoFGoYb1pVuOSf9fOefVZDnDSKp9/WNCOH6vPILcWgGYDLYC', '/default.png', NULL, '2019-12-18 23:45:59', '2019-12-18 23:45:59', 0),
 (7, 'Nicolas Fernandez', 'nicolasemanuelfernandez@gmail.com', NULL, '$2y$10$9gNUaW55yXpps1AFlfHAhO4WbZ5xz4R8TVV6ntnRUn9vDJXHnVGVC', '/default.png', NULL, '2019-12-19 17:58:37', '2019-12-19 17:58:37', 0),
-(8, 'lalal', 'lalala@gmail.com', NULL, '$2y$10$k4pIjVjlnuzAcvARChStg.Oaz90wdmqEk.6O1b7kpWNB6T9jB1m3q', 'ZYIq9Bdr54u6w3zp1did8sYXbPeJlFE5C1TrEUtY.jpeg', NULL, '2019-12-19 18:03:53', '2019-12-19 18:03:53', 1);
+(8, 'lalal', 'lalala@gmail.com', NULL, '$2y$10$k4pIjVjlnuzAcvARChStg.Oaz90wdmqEk.6O1b7kpWNB6T9jB1m3q', 'ZYIq9Bdr54u6w3zp1did8sYXbPeJlFE5C1TrEUtY.jpeg', NULL, '2019-12-19 18:03:53', '2019-12-19 18:03:53', 1),
+(9, 'Nicolas Fernandez', 'nicolasemanuelfernandez2@gmail.com', NULL, '$2y$10$/Rn3G13.rriW0a1jd11cFOFzu37F6HgZvBAGTU7t43FxS3JtlGzM6', 'ZbOof3OY9PMrDErZOOSm54qHcMoikxi3CXufKbni.jpeg', NULL, '2019-12-20 17:54:49', '2019-12-20 17:54:49', 0);
 
 --
 -- Índices para tablas volcadas
@@ -359,7 +367,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `candys`
 --
 ALTER TABLE `candys`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -377,7 +385,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `mi_carrito`
 --
 ALTER TABLE `mi_carrito`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `sabors`
@@ -395,7 +403,7 @@ ALTER TABLE `sabor_candy`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
